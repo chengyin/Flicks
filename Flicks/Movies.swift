@@ -8,10 +8,10 @@
 
 import UIKit
 
-func apiCall(
+func movieAPICall(
   endpoint: String,
   beforeStartHandler: (() -> Void)? = nil,
-  completeHandler:  (NSData?, NSURLResponse?, NSError?) -> Void
+  completeHandler:  (NSError?, [Movie]?) -> Void
   ) {
 
   let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -31,12 +31,40 @@ func apiCall(
     beforeStartHandler!()
   }
 
-  let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: completeHandler)
+  let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
+    if (error != nil) {
+      print(error)
+      completeHandler(error, nil)
+    }
+
+    if let data = dataOrNil {
+      if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+        data, options:[]) as? NSDictionary {
+        print("response: \(responseDictionary)")
+
+        guard let results = responseDictionary["results"] as? NSArray else { return; }
+        var movies: [Movie] = []
+
+        for result in results {
+          guard let movie = Movie(apiResponse: result as! NSDictionary) else { continue; }
+
+          movies.append(movie)
+        }
+
+        completeHandler(nil, movies)
+      }
+    }
+  })
 
   task.resume()
 }
 
 class Movies: NSObject {
+  enum MovieCollections {
+    case NowPlaying
+    case TopRated
+  }
+
   var _movies:[Movie] = []
 
   var count: Int {
@@ -45,41 +73,58 @@ class Movies: NSObject {
     }
   }
 
-  func at(index: Int) -> Movie? {
-    return _movies[index];
+  init(_ movies: [Movie]? = nil) {
+    if (movies != nil) {
+      _movies = movies!
+    }
   }
 
-  func loadNowPlaying(
+  func at(index: Int) -> Movie? {
+    return index < _movies.count ? _movies[index] : nil;
+  }
+
+  func load(
+    type: MovieCollections,
+    beforeStartHandler: (() -> Void)? = nil,
+    completeHandler: (NSError?) -> Void
+  ) {
+    switch type {
+    case .NowPlaying:
+      loadEndpoint("now_playing", beforeStartHandler: beforeStartHandler, completeHandler: completeHandler)
+    case .TopRated:
+      loadEndpoint("top_rated", beforeStartHandler: beforeStartHandler, completeHandler: completeHandler)
+    }
+  }
+
+  func loadEndpoint(
+    endpoint: String,
     beforeStartHandler: (() -> Void)? = nil,
     completeHandler: (NSError?) -> Void
     ) {
-
-    apiCall(
-      "now_playing",
+    movieAPICall(
+      endpoint,
       beforeStartHandler: beforeStartHandler,
-      completeHandler: { (dataOrNil, response, error) in
+      completeHandler: { (error, movies) in
         if (error != nil) {
           print(error)
           completeHandler(error)
+          return
         }
 
-        if let data = dataOrNil {
-          if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-          data, options:[]) as? NSDictionary {
-            print("response: \(responseDictionary)")
+        self._movies = movies ?? []
+        completeHandler(nil)
+    })
+  }
 
-            guard let results = responseDictionary["results"] as? NSArray else { return; }
+  func filter(keyword: String?) -> Movies {
+    if (keyword == nil || keyword == "") {
+      return self
+    }
 
-            self._movies.removeAll()
-            for result in results {
-              guard let movie = Movie(apiResponse: result as! NSDictionary) else { continue; }
+    let lower = keyword?.lowercaseString
 
-              self._movies.append(movie)
-            }
-
-            completeHandler(nil)
-          }
-        }
+    return Movies(_movies.filter { (movie) -> Bool in
+      return movie.title.lowercaseString.containsString(lower!)
     })
   }
 }

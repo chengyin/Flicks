@@ -9,6 +9,7 @@
 import UIKit
 
 let IMG_PREFIX_HQ = "https://image.tmdb.org/t/p/original"
+let IMG_PREFIX_MQ = "https://image.tmdb.org/t/p/w500"
 let IMG_PREFIX_LQ = "https://image.tmdb.org/t/p/w185"
 
 class Movie: NSObject {
@@ -20,6 +21,12 @@ class Movie: NSObject {
   var posterURL: NSURL {
     get {
       return NSURL(string: "\(IMG_PREFIX_LQ)\(posterPath)")!
+    }
+  }
+
+  var posterMQURL: NSURL {
+    get {
+      return NSURL(string: "\(IMG_PREFIX_MQ)\(posterPath)")!
     }
   }
 
@@ -37,11 +44,11 @@ class Movie: NSObject {
   }
 
   convenience init?(apiResponse: NSDictionary) {
-    guard let id = apiResponse["id"] as! Int?,
-      let title = apiResponse["title"] as! String?,
-      let overview = apiResponse["overview"] as! String?,
-      let posterPath = apiResponse["poster_path"] as! String?
-      else { return nil }
+    guard let id = apiResponse["id"] as? Int,
+      let title = apiResponse["title"] as? String,
+      let overview = apiResponse["overview"] as? String,
+      let posterPath = apiResponse["poster_path"] as? String
+    else { return nil }
 
     self.init(id: id, title: title, overview: overview, posterPath: posterPath)
   }

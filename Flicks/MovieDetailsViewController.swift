@@ -18,11 +18,10 @@ class MovieDetailsViewController: UIViewController {
   @IBOutlet weak var overviewLabel: UILabel!
 
   var movie: Movie?
+  var placeholderImage: UIImage?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // Do any additional setup after loading the view.
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -35,28 +34,30 @@ class MovieDetailsViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
-
-  /*
-   // MARK: - Navigation
-
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-
   // MARK: -
 
-  func prepareToShowMovie(movie: Movie) {
+  func prepareToShowMovie(movie: Movie, placeholderImage: UIImage? = nil) {
     self.movie = movie
+    self.placeholderImage = placeholderImage
   }
 
   func showMovie() {
-    self.titleLabel!.text = movie?.title
-    self.overviewLabel!.text = movie?.overview
-    self.overviewLabel.sizeToFit()
+    if (movie != nil) {
+      self.titleLabel!.text = movie?.title
+      self.overviewLabel!.text = movie?.overview
+      self.overviewLabel.sizeToFit()
 
-    self.imageView.af_setImageWithURL((movie?.posterHQURL)!)
+      self.imageView.af_setImageWithURL(movie!.posterHQURL, placeholderImage: placeholderImage, imageTransition: .CrossDissolve(0.2))
+    }
+  }
+
+  // MARK: -
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let dest = segue.destinationViewController as? MoviePosterViewController
+
+    if (dest != nil) {
+      dest!.image = self.imageView.image
+    }
   }
 }

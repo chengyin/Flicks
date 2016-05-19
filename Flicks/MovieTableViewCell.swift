@@ -17,7 +17,10 @@ class MovieTableViewCell: UITableViewCell {
 
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
+
+    let bgView = UIView()
+    bgView.backgroundColor = UIColor(white: 0.6, alpha: 0.2)
+    self.selectedBackgroundView = bgView
   }
 
   override func setSelected(selected: Bool, animated: Bool) {
@@ -28,9 +31,17 @@ class MovieTableViewCell: UITableViewCell {
 
   // MARK: -
 
+  override func prepareForReuse() {
+    poster.image = UIImage()
+  }
+
   func showMovie(movie: Movie) {
     self.titleLabel.text = movie.title
     self.overviewLabel.text = movie.overview
-    self.poster.af_setImageWithURL(movie.posterURL)
+    self.poster.af_setImageWithURL(movie.posterURL, imageTransition: .CrossDissolve(0.2))
+  }
+
+  func getImage() -> UIImage? {
+    return poster.image
   }
 }
