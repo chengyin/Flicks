@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BF706AB3FE9AB88AFD19E7C6C1F3514E'
-               BlueprintName = 'XCDYouTubeKit'
+               BlueprintIdentifier = '71FF1A779A5A950A626763C49B5958ED'
+               BlueprintName = 'ImageEffects'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'XCDYouTubeKit.framework'>
+               BuildableName = 'ImageEffects.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

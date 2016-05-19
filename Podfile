@@ -9,4 +9,6 @@ target 'Flicks' do
   pod 'AlamofireImage', '~> 2.0'
   pod 'MBProgressHUD', '~> 0.9'
   pod "XCDYouTubeKit", "~> 2.5"
+  pod "ImageEffects"
+
 end
