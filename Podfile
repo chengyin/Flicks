@@ -8,4 +8,5 @@ target 'Flicks' do
   # Pods for Flicks
   pod 'AlamofireImage', '~> 2.0'
   pod 'MBProgressHUD', '~> 0.9'
+  pod "XCDYouTubeKit", "~> 2.5"
 end

@@ -14,49 +14,26 @@ func movieAPICall(
   completeHandler:  (NSError?, [Movie]?) -> Void
   ) {
 
-  let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-  let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
-  let request = NSURLRequest(
-    URL: url!,
-    cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-    timeoutInterval: 10)
-
-  let session = NSURLSession(
-    configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-    delegate: nil,
-    delegateQueue: NSOperationQueue.mainQueue()
-  )
-
-  if (beforeStartHandler != nil) {
-    beforeStartHandler!()
-  }
-
-  let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-    if (error != nil) {
-      print(error)
-      completeHandler(error, nil)
-    }
-
-    if let data = dataOrNil {
-      if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-        data, options:[]) as? NSDictionary {
-        print("response: \(responseDictionary)")
-
-        guard let results = responseDictionary["results"] as? NSArray else { return; }
-        var movies: [Movie] = []
-
-        for result in results {
-          guard let movie = Movie(apiResponse: result as! NSDictionary) else { continue; }
-
-          movies.append(movie)
-        }
-
-        completeHandler(nil, movies)
+  MoviesAPI.call(
+    endpoint,
+    beforeStartHandler: beforeStartHandler,
+    completeHandler: {
+      (error, response) in
+      if (error != nil || response == nil) {
+        return
       }
-    }
-  })
 
-  task.resume()
+      guard let results = response!["results"] as? NSArray else { return; }
+      var movies: [Movie] = []
+
+      for result in results {
+        guard let movie = Movie(apiResponse: result as! NSDictionary) else { continue; }
+
+        movies.append(movie)
+      }
+
+      completeHandler(nil, movies)
+  })
 }
 
 class Movies: NSObject {

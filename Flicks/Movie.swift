@@ -18,6 +18,27 @@ class Movie: NSObject {
   let overview: String
   let posterPath: String
 
+  var videos: [[String: Any?]] {
+    get {
+      var results = [[String: Any?]]()
+
+      if (apiVideos != nil) {
+        for video in apiVideos! {
+          if (video["site"] as? String == "YouTube") {
+            results.append([
+              "name": video["name"],
+              "key": video["key"]
+            ])
+          }
+        }
+      }
+
+      return results
+    }
+  }
+
+  private var apiVideos: [NSDictionary]?
+
   var posterURL: NSURL {
     get {
       return NSURL(string: "\(IMG_PREFIX_LQ)\(posterPath)")!
@@ -51,6 +72,25 @@ class Movie: NSObject {
     else { return nil }
 
     self.init(id: id, title: title, overview: overview, posterPath: posterPath)
+  }
+
+  // MARK: -
+
+  func getVideos(completionHandler: ([[String: Any?]]?) -> Void) {
+    if (apiVideos != nil) {
+      completionHandler(videos)
+    } else {
+      MoviesAPI.call(
+        "\(id)/videos",
+        completeHandler: { (error, response) in
+          if (error == nil && response != nil) {
+            //let results = response!["results"] as! [[String: Any?]]
+            guard let results = response!["results"] as? [NSDictionary] else { return; }
+            self.apiVideos = results
+            completionHandler(self.videos)
+          }
+      })
+    }
   }
 }
 

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '05094CC4A047119F7ADC14EE74C4881C'
-               BlueprintName = 'AlamofireImage'
+               BlueprintIdentifier = '4B8E62753A20FA2A168C346A0B02DF56'
+               BlueprintName = 'XCDYouTubeKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'AlamofireImage.framework'>
+               BuildableName = 'XCDYouTubeKit.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

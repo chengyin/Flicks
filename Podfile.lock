@@ -3,16 +3,19 @@ PODS:
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
   - MBProgressHUD (0.9.2)
+  - XCDYouTubeKit (2.5.2)
 
 DEPENDENCIES:
   - AlamofireImage (~> 2.0)
   - MBProgressHUD (~> 0.9)
+  - XCDYouTubeKit (~> 2.5)
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  XCDYouTubeKit: bb81db52d5539f8f34c4081f344980ef38f4644d
 
-PODFILE CHECKSUM: a9d512beabfc67b4e559ae54e123f662949e5817
+PODFILE CHECKSUM: 3c65f781cb0a8988ac5631ddf696b006d9e7e7c0
 
 COCOAPODS: 1.0.0

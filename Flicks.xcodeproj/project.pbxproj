@@ -27,6 +27,8 @@
 		1A3095AB1CEAE9D6005EEDAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3095A91CEAE9D6005EEDAB /* LaunchScreen.storyboard */; };
 		1A3095AC1CEAE9D6005EEDAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3095AA1CEAE9D6005EEDAB /* Main.storyboard */; };
 		1A46000A1CED2A2C004E8E8C /* MoviePosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4600091CED2A2C004E8E8C /* MoviePosterViewController.swift */; };
+		1A46000C1CED55EE004E8E8C /* MoviesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A46000B1CED55EE004E8E8C /* MoviesAPI.swift */; };
+		1A46000E1CED8E4B004E8E8C /* DarkGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A46000D1CED8E4B004E8E8C /* DarkGradient.png */; };
 		4D25F2D9E27619BEECCD8CC9 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBFE9BE10B63E6E1D91031E /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		1A3095A91CEAE9D6005EEDAB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Flicks/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		1A3095AA1CEAE9D6005EEDAB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Flicks/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		1A4600091CED2A2C004E8E8C /* MoviePosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePosterViewController.swift; sourceTree = "<group>"; };
+		1A46000B1CED55EE004E8E8C /* MoviesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesAPI.swift; sourceTree = "<group>"; };
+		1A46000D1CED8E4B004E8E8C /* DarkGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DarkGradient.png; sourceTree = "<group>"; };
 		1AC1A0D01CEAE252002EAA6E /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C798129CDE5001F59813DA0 /* Pods-Flicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.release.xcconfig"; sourceTree = "<group>"; };
 		FBBFE9BE10B63E6E1D91031E /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +110,7 @@
 		1AC1A0D21CEAE252002EAA6E /* Flicks */ = {
 			isa = PBXGroup;
 			children = (
+				1A46000D1CED8E4B004E8E8C /* DarkGradient.png */,
 				1A2790771CEBE941004D32D2 /* Images */,
 				1A3095991CEAE972005EEDAB /* AppDelegate.swift */,
 				1A30959A1CEAE972005EEDAB /* Assets.xcassets */,
@@ -120,6 +125,7 @@
 				1A4600091CED2A2C004E8E8C /* MoviePosterViewController.swift */,
 				1A3095A91CEAE9D6005EEDAB /* LaunchScreen.storyboard */,
 				1A2790881CEBECB8004D32D2 /* Colors.swift */,
+				1A46000B1CED55EE004E8E8C /* MoviesAPI.swift */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -209,6 +215,7 @@
 				1A3095AC1CEAE9D6005EEDAB /* Main.storyboard in Resources */,
 				1A2790861CEBEB50004D32D2 /* rating.png in Resources */,
 				1A27907B1CEBE964004D32D2 /* two_tickets_filled.png in Resources */,
+				1A46000E1CED8E4B004E8E8C /* DarkGradient.png in Resources */,
 				1A27907A1CEBE964004D32D2 /* two_tickets.png in Resources */,
 				1A27907F1CEBEA27004D32D2 /* two_tickets@2x.png in Resources */,
 				1A3095AB1CEAE9D6005EEDAB /* LaunchScreen.storyboard in Resources */,
@@ -272,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3095A81CEAE972005EEDAB /* ViewController.swift in Sources */,
+				1A46000C1CED55EE004E8E8C /* MoviesAPI.swift in Sources */,
 				1A2790891CEBECB8004D32D2 /* Colors.swift in Sources */,
 				1A3095A71CEAE972005EEDAB /* MovieTableViewCell.swift in Sources */,
 				1A46000A1CED2A2C004E8E8C /* MoviePosterViewController.swift in Sources */,
