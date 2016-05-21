@@ -11,7 +11,7 @@ The following user stories must be completed:
 - [X] User can view a list of movies currently playing in theaters from The Movie Database. Poster images must be loaded asynchronously.
 - [X] User can view movie details by tapping on a cell.
 - [X] User sees loading state while waiting for movies API. You can use one of the 3rd party libraries listed on CocoaControls.
-- [X]User sees an error message when there's a networking error. You may not use UIAlertController or a 3rd party library to display the error. See this screenshot for what the error message should look like.
+- [X] User sees an error message when there's a networking error. You may not use UIAlertController or a 3rd party library to display the error. See this screenshot for what the error message should look like.
 - [X] User can pull to refresh the movie list.
 - [X] Add a tab bar for Now Playing or Top Rated movies. (high)
 - [X] Implement a UISegmentedControl to switch between a list view and a grid view. (high)
