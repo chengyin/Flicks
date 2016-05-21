@@ -21,6 +21,8 @@ class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var overviewLabel: UILabel!
 
+  @IBOutlet weak var infoViewTopConstraint: NSLayoutConstraint!
+
   var movie: Movie?
   var placeholderImage: UIImage?
   var naturalImageViewHeight: CGFloat = 0
@@ -33,6 +35,8 @@ class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
 
     scrollEndBackgroundView.backgroundColor = Colors.offBlack
     view.insertSubview(scrollEndBackgroundView, belowSubview: scrollView)
+
+    infoViewTopConstraint.constant = view.bounds.height - 200.0
   }
 
   override func viewWillAppear(animated: Bool) {
